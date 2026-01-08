@@ -49,7 +49,7 @@ export default function Sidebar({ isSidebarOpen, onToggleSidebar }) {
       >
       </div>
 
-      <aside className={`fixed top-0 left-0 h-full w-64 bg-white/90 backdrop-blur-lg border-r border-slate-200/60 z-50 flex flex-col md:relative md:w-64 md:shrink-0 md:translate-x-0 transition-transform duration-300 ease-in-out ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <aside className={`fixed top-0 h-full w-64 bg-white/90 backdrop-blur-lg border-r border-slate-200/60 z-50 flex flex-col md:relative md:left-0 transition-[left] duration-300 ease-in-out ${isSidebarOpen ? 'left-0' : '-left-64'} md:!left-0`}>
 
         {/* Logo and Close button for mobile */}
         <div className=' flex items-center justify-between h-16 px-4 border-b border-slate-200/60'>
