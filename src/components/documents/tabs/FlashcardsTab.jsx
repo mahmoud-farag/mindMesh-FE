@@ -2,33 +2,36 @@ import React from 'react';
 import { BookOpen, Plus, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function FlashcardsTab({ documentId, onActionComplete }) {
-    // TODO: Add your state and handlers here
-    // const [flashcards, setFlashcards] = useState([]);
-    // const [currentIndex, setCurrentIndex] = useState(0);
-    // const [isFlipped, setIsFlipped] = useState(false);
+    //* States
 
-    function handleGenerateFlashcards() {
-        // TODO: Implement generate flashcards logic
-        console.log('Generate flashcards for document:', documentId);
-    }
+    //* Custom hooks
 
-    function handlePrevious() {
-        // TODO: Implement previous card logic
-    }
+    //* Refs
 
-    function handleNext() {
-        // TODO: Implement next card logic
-    }
-
-    function handleFlip() {
-        // TODO: Implement flip card logic
-    }
+    //* Helper functions
 
     // Sample flashcard for UI preview
     const sampleCard = {
         question: 'What is React?',
-        answer: 'A JavaScript library for building user interfaces.'
+        answer: 'A JavaScript library for building user interfaces.',
     };
+
+    //* Life cycle hooks
+
+    //* Handlers
+    function handleGenerateFlashcards() {
+    }
+
+    function handlePrevious() {
+    }
+
+    function handleNext() {
+    }
+
+    function handleFlip() {
+    }
+
+    //* JSX
 
     return (
         <div className="space-y-6">

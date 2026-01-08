@@ -1,10 +1,22 @@
-import React from 'react'
+import React from 'react';
 import { useAuth } from '../../context/authContext';
 import { User, Bell, Menu } from 'lucide-react';
 
 export default function Header({ onToggleSidebar }) {
+  //* States
 
+  //* Custom hooks
   const { loggedUser } = useAuth();
+
+  //* Refs
+
+  //* Helper functions
+
+  //* Life cycle hooks
+
+  //* Handlers
+
+  //* JSX
 
   return (
     <header className=' bg-white/80 sticky top-0 z-40 w-full h-16 backdrop-blur-sm border-b-2 border-slate-400'>

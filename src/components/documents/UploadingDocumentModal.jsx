@@ -1,5 +1,5 @@
 import { X, Upload } from 'lucide-react';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 import { useModalAnimation } from '../../context/customHooks';
 
 const UploadingDocumentModal = ({
@@ -11,13 +11,23 @@ const UploadingDocumentModal = ({
   uploadFile,
   uploading,
   uploadingProgress,
-  onClose
+  onClose,
 }) => {
+  //* States
 
-  const { isVisible, handleCloseModal, shouldRender } = useModalAnimation({ isOpen: shouldOpenModal, onClose },);
+  //* Custom hooks
+  const { isVisible, handleCloseModal, shouldRender } = useModalAnimation({ isOpen: shouldOpenModal, onClose });
 
+  //* Refs
+
+  //* Helper functions
+
+  //* Life cycle hooks
+
+  //* Handlers
+
+  //* JSX
   if (!shouldRender) return null;
-
 
   return (
     <div
@@ -30,7 +40,7 @@ const UploadingDocumentModal = ({
         className={`p-5 relative bg-white/95 w-full max-w-lg border border-slate-200/60 rounded-2xl shadow-2xl shadow-slate-900/20 transition-all duration-300 ease-out ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-20 opacity-0'
           }`}
 
-        onClick={(e)=> e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
         <button

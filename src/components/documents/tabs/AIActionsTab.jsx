@@ -2,20 +2,24 @@ import React from 'react';
 import { Sparkles, FileText, Lightbulb, Loader2 } from 'lucide-react';
 
 export default function AIActionsTab({ documentId, onActionComplete }) {
-    // TODO: Add your state and handlers here
-    // const [summaryLoading, setSummaryLoading] = useState(false);
-    // const [conceptInput, setConceptInput] = useState('');
+    //* States
 
+    //* Custom hooks
+
+    //* Refs
+
+    //* Helper functions
+
+    //* Life cycle hooks
+
+    //* Handlers
     function handleGenerateSummary() {
-        // TODO: Implement generate summary logic
-        console.log('Generate summary for document:', documentId);
     }
 
     function handleExplainConcept() {
-        // TODO: Implement explain concept logic
-        console.log('Explain concept for document:', documentId);
     }
 
+    //* JSX
     return (
         <div className="space-y-6">
             {/* AI Assistant Header */}

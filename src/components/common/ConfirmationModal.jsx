@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { X, TriangleAlert, AlertCircle, Info } from 'lucide-react';
 import { useModalAnimation } from '../../context/customHooks';
 
+//* Constants
+
 const VARIANTS = {
   danger: {
     iconBg: 'bg-gradient-to-r from-red-200 to-red-300',
@@ -34,13 +36,25 @@ export default function ConfirmationModal({
   variant = 'danger',
   isLoading = false,
 }) {
+  //* States
 
+  //* Custom hooks
   const { isVisible, handleCloseModal, shouldRender } = useModalAnimation({ isOpen, onClose }, {});
 
+  //* Refs
+
+  //* Helper functions
+
+
+  //* Life cycle hooks
+
+  //* Handlers
+
+  //* JSX
 
   if (!shouldRender) return null;
-
-  const { iconBg, iconColor, confirmBtn, Icon } = VARIANTS[variant] || VARIANTS.danger;
+  const { iconBg, iconColor, confirmBtn, Icon } =
+    VARIANTS[variant] || VARIANTS.danger;
 
   return (
     <div

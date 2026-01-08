@@ -1,7 +1,20 @@
 import { FileText } from 'lucide-react';
-import React from 'react'
+import React from 'react';
 
 const NoDocuments = () => {
+  //* States
+
+  //* Custom hooks
+
+  //* Refs
+
+  //* Helper functions
+
+  //* Life cycle hooks
+
+  //* Handlers
+
+  //* JSX
   return (
     <div className="min-h-[400px]  flex flex-col gap-3 justify-center items-center">
       <div className="w-20 h-20 rounded-2xl bg-slate-200 inline-flex items-center justify-center">

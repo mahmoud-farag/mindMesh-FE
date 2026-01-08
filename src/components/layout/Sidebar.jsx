@@ -1,27 +1,45 @@
-import React from 'react'
+import React from 'react';
 import { useAuth } from '../../context/authContext';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { BookOpen, FileText, LayoutDashboard, Link, User, BrainCircuit, X, LogOut } from 'lucide-react';
+import {
+  BookOpen,
+  FileText,
+  LayoutDashboard,
+  Link,
+  User,
+  BrainCircuit,
+  X,
+  LogOut,
+} from 'lucide-react';
 
 export default function Sidebar({ isSidebarOpen, onToggleSidebar }) {
+  //* States
 
+  //* Custom hooks
   const { logoutHandler } = useAuth();
   const navigate = useNavigate();
 
-  function logout() {
-    logoutHandler();
-    navigate('/login');
+  //* Refs
 
-  }
-
+  //* Helper functions
 
   const navLinks = [
     { to: '/dashboard', icon: LayoutDashboard, text: 'Dashboard' },
     { to: '/documents', icon: FileText, text: 'Documents' },
     { to: '/flashcards', icon: BookOpen, text: 'Flashcards' },
     { to: '/profile', icon: User, text: 'Profile' },
+  ];
 
-  ]
+  //* Life cycle hooks
+
+  //* Handlers
+
+  function logout() {
+    logoutHandler();
+    navigate('/login');
+  }
+
+  //* JSX
 
   return (
     <>

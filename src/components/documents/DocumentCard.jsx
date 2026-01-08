@@ -9,9 +9,18 @@ export default function DocumentCard({
   setSelectedDocument,
   setIsDeleteModalOpen,
 }) {
+  //* States
   const navigate = useNavigate();
 
-  // Handlers
+  //* Custom hooks
+
+  //* Refs
+
+  //* Helper functions
+
+  //* Life cycle hooks
+
+  //* Handlers
   function handleNavigate() {
     navigate(`/documents/${document._id}`);
   }
@@ -23,7 +32,7 @@ export default function DocumentCard({
     setIsDeleteModalOpen(true);
   }
 
-
+  //* JSX
 
   return (
     <div

@@ -3,11 +3,23 @@ import Sidebar from './Sidebar';
 import Header from './Header';
 
 const AppLayout = ({ children }) => {
+  //* States
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  //* Custom hooks
+
+  //* Refs
+
+  //* Helper functions
+
+  //* Life cycle hooks
+
+  //* Handlers
   const onToggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  //* JSX
 
   return (
     <div className="flex bg-neutral-50 min-h-screen md:h-screen text-neutral-900  ">
@@ -23,7 +35,7 @@ const AppLayout = ({ children }) => {
       </div>
     </div>
   );
-
-}
+};
 
 export default AppLayout;
+

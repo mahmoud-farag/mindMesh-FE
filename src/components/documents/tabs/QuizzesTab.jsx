@@ -2,23 +2,30 @@ import React from 'react';
 import { BrainCircuit, Plus, Clock, Play } from 'lucide-react';
 
 export default function QuizzesTab({ documentId, onActionComplete }) {
-    // TODO: Add your state and handlers here
-    // const [quizzes, setQuizzes] = useState([]);
+    //* States
 
-    function handleGenerateQuiz() {
-        // TODO: Implement generate quiz logic
-        console.log('Generate quiz for document:', documentId);
-    }
+    //* Custom hooks
 
-    function handleStartQuiz(quizId) {
-        // TODO: Implement start quiz navigation
-        console.log('Start quiz:', quizId);
-    }
+    //* Refs
+
+    //* Helper functions
 
     // Sample quiz for UI preview
     const sampleQuizzes = [
-        { _id: '1', title: 'React Basics Quiz', questionCount: 10, createdAt: new Date() }
+        { _id: '1', title: 'React Basics Quiz', questionCount: 10, createdAt: new Date() },
     ];
+
+    //* Life cycle hooks
+
+    //* Handlers
+
+    function handleGenerateQuiz() {
+    }
+
+    function handleStartQuiz(quizId) {
+    }
+
+    //* JSX
 
     return (
         <div className="space-y-6">
