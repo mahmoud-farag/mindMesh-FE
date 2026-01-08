@@ -1,0 +1,102 @@
+import { BookOpen, BrainCircuit, FileText, Trash2, Clock } from 'lucide-react';
+import moment from 'moment';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import utils from '../../utils/utils';
+
+export default function DocumentCard({
+  document,
+  setSelectedDocument,
+  setIsDeleteModalOpen,
+}) {
+  const navigate = useNavigate();
+
+  // Handlers
+  function handleNavigate() {
+    navigate(`/documents/${document._id}`);
+  }
+
+  function handleDelete(e) {
+    e.stopPropagation();
+
+    setSelectedDocument(document);
+    setIsDeleteModalOpen(true);
+  }
+
+
+
+  return (
+    <div
+      className="group relative bg-white/80 backdrop-blur-xl border border-slate-200/60 rounded-2xl p-5 hover:border-slate-300/60 hover:shadow-xl hover:bg-violet-100/20 hover:shadow-slate-200/50 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1"
+      onClick={handleNavigate}
+    >
+      {/* Header Section */}
+      <div className="flex mb-4 justify-between">
+        <div className=" shrink-0 w-12 h-12 inline-flex items-center justify-center bg-linear-to-br from-violet-500 to-purple-500 rounded-xl shadow-lg shadow-violet-500/25 group-hover:scale-110 transition-transform duration-300">
+          <FileText className="w-6 h-6 text-white" strokeWidth={2} />
+        </div>
+
+        <button
+          onClick={handleDelete}
+          className="opacity-0 group-hover:opacity-100 transition-all duration-300 hover:text-red-500 cursor-pointer text-slate-400 w-8 h-8  inline-flex justify-center items-center"
+          aria-label="Delete document"
+        >
+          <Trash2 className="w-5 h-5" strokeWidth={2} />
+        </button>
+      </div>
+
+      {/* Title */}
+      <h3
+        className="text-base font-semibold text-slate-900 truncate mb-2"
+        title={document.title}
+      >
+        {document.title}
+      </h3>
+
+      {/* Document Info */}
+      <div className=" text-slate-500 mb-3">
+        {document?.fileSize && (
+          <span className="font-medium">
+            {utils.formateFileSize(document.fileSize)}
+          </span>
+        )}
+      </div>
+
+      {/* Stats Section */}
+      <div className="mb-3 flex justify-around gap-y-2 ">
+        {document?.flashcardCount !== undefined && (
+          <div className=" bg-fuchsia-100 p-2 rounded-xl flex gap-1 items-center ">
+            <BookOpen
+              className="font-semibold text-fuchsia-600 inline-flex h-5 w-5"
+              strokeWidth={2}
+            />
+            <span className="text-sm font-semibold text-fuchsia-700">
+              {document.flashcardCount} Flashcards
+            </span>
+          </div>
+        )}
+
+        {document?.quizCount !== undefined && (
+          <div className=" bg-violet-100 p-2 rounded-xl flex gap-1 items-center ">
+            <BrainCircuit className="text-violet-600" strokeWidth={2} />
+            <span className="text-sm text-violet-600 font-semibold">
+              {document.quizCount} Quizzes
+            </span>
+          </div>
+        )}
+      </div>
+
+      {/* Footer */}
+      <div className="border-t border-slate-300 p-3 flex gap-2 text-slate-600/70 font-semibold">
+        <Clock
+          className="inline-flex justify-center items-center"
+          strokeWidth={2}
+        />
+        <span>Uploaded {moment(document.createdAt).fromNow()}</span>
+      </div>
+
+      {/* Hover Indicator */}
+      <div className="" />
+    </div>
+  );
+}
