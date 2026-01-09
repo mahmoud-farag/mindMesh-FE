@@ -62,7 +62,7 @@ aiService.generateSummary = async (params = {}, options = {}) => {
 aiService.chat = async (params = {}, options = {}) => {
   try {
 
-    const { documentId , message } = params;
+    const { documentId, question } = params;
     
     const response = await axiosClient.post(AI_PATHS.CHAT, { ...params });
 

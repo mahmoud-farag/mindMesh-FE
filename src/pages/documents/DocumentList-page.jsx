@@ -26,15 +26,16 @@ export default function DocumentListPage() {
   const [selectedDocument, setSelectedDocument] = useState(null);
   const [uploadingProgress, setUploadingProgress] = useState(0);
 
-  
-  const { data, loading, refetchData } = useGetData({
+
+  const { data: documents, loading, refetchData } = useGetData({
     initialState: [],
     serviceFunc: documentService.getAllDocuments,
     showSuccessToast: false,
+    selectedField: 'documents',
   });
 
   // drivedStates
-  const isThereDocsToRender = data?.documents?.length ? true : false;
+  const isThereDocsToRender = documents?.length ? true : false;
 
   // const fetchDocuments = async () => {
   //   try {
@@ -217,7 +218,7 @@ export default function DocumentListPage() {
         {/* cards list */}
         {isThereDocsToRender ? (
           <div className="grid gap-6 grid-cols-[repeat(auto-fill,minmax(400px,400px))]">
-            {(data?.documents ?? []).map((document) => (
+            {(documents ?? []).map((document) => (
               <DocumentCard
                 key={document._id}
                 document={document}

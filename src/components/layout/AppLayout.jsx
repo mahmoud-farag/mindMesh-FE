@@ -29,7 +29,7 @@ const AppLayout = ({ children }) => {
       />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header onToggleSidebar={onToggleSidebar} />
-        <main className="py-3  px-5 scroll-smooth bg-neutral-100 flex-1 overflow-x-hidden overflow-y-auto ">
+        <main className="py-3 px-5 scroll-smooth bg-neutral-100 flex-1 overflow-x-hidden overflow-y-auto ">
           {children}
         </main>
       </div>
