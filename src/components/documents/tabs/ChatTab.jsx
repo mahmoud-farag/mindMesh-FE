@@ -91,16 +91,16 @@ export default function ChatTab() {
   }
 
   return (
-    <div className="min-h-[62vh] flex flex-col">
+    <div className="h-[62vh] flex flex-col">
       {/* header */}
-      <div className="h-auto  p-3 ">
-        <p className="text-xl tracking-tight ">
+      <div className="shrink-0 p-2 sm:p-3">
+        <p className="text-base sm:text-xl tracking-tight">
           You can chat with AI about your document contents
         </p>
       </div>
 
-      {/* body */}
-      <div className="bg-white rounded-2xl flex-1 p-3 mb-4 shadow-md overflow-y-auto flex flex-col justify-end">
+      {/* body - scrollable messages area */}
+      <div className="bg-white rounded-2xl flex-1 p-3 mb-4 shadow-md overflow-y-auto">
         {history?.length > 0 ? (
           <>
             {history.map((record, index) => (
@@ -138,7 +138,7 @@ export default function ChatTab() {
             value={question}
             disabled={isPrepareAnswer}
             onChange={(e) => setQuestion(e.target.value)}
-            className=" min-h-15 bg-white text-slate-800 shadow-md focus:shadow-lg focus:shadow-violet-200 placeholder:text-slate-400 px-4 rounded-xl focus:outline-violet-400 transition-all duration-300 focus:border-violet-300 flex-1 focus:text-base focus:tracking-tight   "
+            className=" min-h-15 bg-white text-slate-800 shadow-md focus:shadow-lg focus:shadow-violet-200 placeholder:text-xs  ms:placeholder:text-base sm:text-base placeholder:text-slate-400 px-4 rounded-xl focus:outline-violet-400 transition-all duration-300 focus:border-violet-300 flex-1 focus:text-sm sm:focus:text-base focus:tracking-tight   "
             placeholder="Ask any question related to the document"
           />
           <button
