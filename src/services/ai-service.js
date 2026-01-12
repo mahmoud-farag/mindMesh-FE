@@ -76,16 +76,35 @@ aiService.chat = async (params = {}, options = {}) => {
 
 aiService.getChatHistory = async (params = {}, options = {}) => {
   try {
+    const { documentId, limit, offset } = params;
 
-    const { documentId, limit, offset  } = params;
-    
-    const response = await axiosClient.get(AI_PATHS.GET_CHAT_HISTORY(documentId), { params: { limit, offset } });
+    const response = await axiosClient.get(
+      AI_PATHS.GET_CHAT_HISTORY(documentId),
+      { params: { limit, offset } }
+    );
 
     return response.data;
+  } catch (error) {
+    throw (
+      error.response?.data ?? { message: 'Error while getting chat history' }
+    );
+  }
+};
 
-  } catch(error) {
+aiService.explainConcept = async (params = {}, options = {}) => {
+  try {
+    const { documentId, concept } = params;
 
-    throw error.response?.data ?? { message: 'Error while getting chat history' };
+    const response = await axiosClient.post(AI_PATHS.EXPLAIN_CONCEPT, {
+      documentId,
+      concept,
+    });
+
+    return response.data;
+  } catch (error) {
+    throw (
+      error.response?.data ?? { message: 'Error while getting chat history' }
+    );
   }
 };
 
