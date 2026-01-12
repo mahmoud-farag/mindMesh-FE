@@ -64,18 +64,19 @@ export default function DocumentDetailsPage() {
       </div>
 
       {/* tabs headers */}
-      <nav className="mt-10  flex gap-2 sm:gap-3 text-xs md:text-lg md:gap-5 lg:gap-10 overflow-x-auto border-b border-slate-300 pb-2 ">
+      <nav className="mt-10 flex gap-2 sm:gap-3 text-xs md:text-lg md:gap-5 lg:gap-10 overflow-x-auto border-b border-slate-300 pb-2">
         {TABs.map((tab) => (
           <NavLink
             key={tab.id}
             to={`/documents/${id}/${tab.id}`}
             className={({ isActive }) =>
-              isActive
-                ? 'bg-white border-b-3 p-2 rounded-lg text-warp inline-flex justify-center items-center gap-1 sm:gap-2 text-violet-500 border-violet-500 whitespace-nowrap transition-all duration-200'
-                : 'text-warp inline-flex justify-center items-center gap-1 sm:gap-2 whitespace-nowrap'
+              `p-2 rounded-lg inline-flex justify-center items-center gap-1 sm:gap-2 whitespace-nowrap transition-colors duration-200 ${isActive
+                ? 'bg-white text-violet-500 shadow-sm border-b-4 border-violet-500'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+              }`
             }
           >
-            {<tab.icon className="size-4 md:size-6 " />}
+            {<tab.icon className="size-4 md:size-6" />}
             {tab.label}
           </NavLink>
         ))}

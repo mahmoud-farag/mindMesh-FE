@@ -85,6 +85,8 @@ export default function BaseModal({
     md: 'max-w-md',
     lg: 'max-w-lg',
     xl: 'max-w-xl',
+    '2xl': 'max-w-2xl',
+    '3xl': 'max-w-3xl',
     full: 'max-w-4xl',
   };
 
@@ -98,15 +100,13 @@ export default function BaseModal({
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex justify-center items-center transition-all duration-300 ${
-        isVisible ? 'bg-slate-900/50 backdrop-blur-sm' : 'bg-transparent'
-      }`}
+      className={`fixed inset-0 z-50 flex justify-center items-center transition-all duration-300 ${isVisible ? 'bg-slate-900/50 backdrop-blur-sm' : 'bg-transparent'
+        }`}
       onClick={handleBackdropClick}
     >
       <div
-        className={`relative w-full bg-white/95 backdrop-blur-xl border border-slate-200/60 rounded-2xl shadow-2xl shadow-slate-900/20 p-6 transition-all duration-300 ease-out ${
-          isVisible ? 'translate-y-0 opacity-100' : '-translate-y-20 opacity-0'
-        } ${sizeClasses[size] || sizeClasses.md} ${className}`}
+        className={`relative w-full bg-white/95 backdrop-blur-xl border border-slate-200/60 rounded-2xl shadow-2xl shadow-slate-900/20 p-6 transition-all duration-300 ease-out max-h-[85vh] flex flex-col ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-20 opacity-0'
+          } ${sizeClasses[size] || sizeClasses.md} ${className}`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -114,7 +114,7 @@ export default function BaseModal({
           <button
             onClick={handleCloseClick}
             disabled={isLoading}
-            className="absolute top-5 right-5 w-8 h-8 inline-flex items-center justify-center rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-700 cursor-pointer transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="absolute top-5 right-5 w-8 h-8 inline-flex items-center justify-center rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-700 cursor-pointer transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed z-10"
           >
             <X className="w-5 h-5" strokeWidth={2} />
           </button>
@@ -122,7 +122,7 @@ export default function BaseModal({
 
         {/* Header */}
         {(title || icon) && (
-          <div className="mb-6 pr-8">
+          <div className="mb-6 pr-8 shrink-0 flex flex-col items-center">
             {icon && (
               <div className="mb-3 inline-flex items-center justify-center">
                 {icon}
@@ -142,7 +142,7 @@ export default function BaseModal({
         )}
 
         {/* Body Content */}
-        <div className="modal-body">{children}</div>
+        <div className="modal-body overflow-y-auto min-h-0">{children}</div>
 
         {/* Footer */}
         {showFooter && (
