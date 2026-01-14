@@ -47,7 +47,7 @@ export default function ChatTab() {
     e.preventDefault();
     try {
       if (!question?.trim()) {
-        toastService.error('Please provide us with your questions');
+        toastService.error('Please enter a question.');
         return;
       }
 
@@ -61,14 +61,14 @@ export default function ChatTab() {
 
         setHistory((prev) => [...prev, userQuestion, aiAnswer]);
       } else {
-        toastService.error('Failed to get response');
+        toastService.error('Unable to get a response. Please try again.');
       }
 
       setQuestion('');
     } catch (error) {
       toastService.error(
         error?.message ??
-          'Error happen while answering your question, try again'
+        'An error occurred while getting the answer. Please try again.'
       );
     } finally {
       setIsPrepareAnswer(false);

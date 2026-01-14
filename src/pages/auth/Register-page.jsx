@@ -39,15 +39,15 @@ export default function RegisterPage() {
         navigate('/login');
 
         toastService.success(
-          response?.message ?? 'Registered successfully, now you can login'
+          response?.message ?? 'Registration successful! You can now log in.'
         );
         return;
       }
 
-      toastService.error('Something went wrong while the registration');
+      toastService.error('An error occurred during registration.');
     } catch (error) {
       toastService.error(
-        error?.message ?? 'Error happen while the registration'
+        error?.message ?? 'An error occurred during registration.'
       );
     } finally {
       setLoading(false);
@@ -58,28 +58,28 @@ export default function RegisterPage() {
     let valid = true;
 
     if (!email) {
-      toastService.warning('Email can not be empty.');
+      toastService.warning('Please enter your email address.');
       valid = false;
     }
 
     if (!password) {
-      toastService.warning('Password can not be empty.');
+      toastService.warning('Please enter your password.');
       valid = false;
     }
 
     if (!username) {
-      toastService.warning('Username can not be empty.');
+      toastService.warning('Please enter a username.');
       valid = false;
     }
 
     if (email && !utils.isValidEmail(email)) {
-      toastService.warning('Email not valid.');
+      toastService.warning('Please enter a valid email address.');
       valid = false;
     }
 
     if (password && !utils.isStrongPassword(password)) {
       toastService.warning(
-        'Weak password, Use at least 8 characters with uppercase, lowercase, number, and symbol.'
+        'Password is too weak. It must be at least 8 characters long and include uppercase, lowercase, number, and symbol.'
       );
       valid = false;
     }
