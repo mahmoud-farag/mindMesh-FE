@@ -89,7 +89,15 @@ export default function ContentTab() {
               <p className="text-xs text-slate-500 uppercase tracking-wide">
                 Status
               </p>
-              <p className="text-sm font-semibold text-slate-900 capitalize">
+              <p
+                className={`text-sm font-semibold ${
+                  document?.status === 'ready'
+                    ? 'text-emerald-400'
+                    : document?.status === 'processing'
+                    ? 'text-amber-500'
+                    : 'text-red-700-900'
+                } capitalize`}
+              >
                 {document?.status === 'processing'
                   ? 'Still under processing'
                   : document?.status}
