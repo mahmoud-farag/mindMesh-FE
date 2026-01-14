@@ -8,11 +8,11 @@ export default function useGetData({ selectedField, initialState = null, service
 
 
   if (!serviceFunc) {
-    throw new Error('Service function is messed');
+    throw new Error('Service function is missing.');
   }
 
   if (!selectedField) {
-    throw new Error('selectedField is messed');
+    throw new Error('selectedField is missing.');
   }
 
   const fetchData = useCallback(async () => {
@@ -29,21 +29,21 @@ export default function useGetData({ selectedField, initialState = null, service
           const dataField = response.data[selectedField];
 
           if (!dataField) {
-            throw new Error('selectedField is not found in response data');
+            throw new Error('The selected field was not found in the response data.');
           }
           setData(() => dataField);
         }
 
         if (showSuccessToast) {
           toastService.success(
-            response?.message ?? 'data Successfully imported'
+            response?.message ?? 'Data imported successfully.'
           );
         }
       } else {
-        toastService.error('empty response');
+        toastService.error('Received an empty response.');
       }
     } catch (error) {
-      toastService.error(error?.message ?? 'Something went wrong');
+      toastService.error(error?.message ?? 'An error occurred while fetching data.');
     } finally {
       setLoading(false);
     }

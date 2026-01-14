@@ -50,11 +50,11 @@ export default function FlashcardsTab() {
       });
 
       if (response?.success) {
-        toastService.success('Flashcards generated successfully');
+        toastService.success('Flashcards generated successfully!');
         refetchFlashcards();
       }
     } catch (error) {
-      toastService.error(error?.message ?? 'Error while generating flashcards');
+      toastService.error(error?.message ?? 'An error occurred while generating flashcards.');
     } finally {
       setIsGenerating(false);
     }
@@ -72,11 +72,11 @@ export default function FlashcardsTab() {
       await flashCardsService.deleteFlashCardSet({
         flashCardSetId: deleteModal.setId,
       });
-      toastService.success('Flashcard set deleted');
+      toastService.success('Flashcard set deleted successfully.');
       refetchFlashcards();
       setDeleteModal({ isOpen: false, setId: null });
     } catch (error) {
-      toastService.error(error?.message ?? 'Error deleting flashcard set');
+      toastService.error(error?.message ?? 'An error occurred while deleting the flashcard set.');
     } finally {
       setIsDeleting(false);
     }

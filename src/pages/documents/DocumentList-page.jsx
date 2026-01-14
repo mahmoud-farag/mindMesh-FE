@@ -69,17 +69,17 @@ export default function DocumentListPage() {
     const file = e.target.files?.[0];
 
     if (!file) {
-      toastService.warning('No file selected');
+      toastService.warning('Please select a file to upload.');
       return;
     }
 
     if (file.type !== 'application/pdf') {
-      toastService.warning('Only PDF files are allowed');
+      toastService.warning('Only PDF files are accepted.');
       return;
     }
 
     if (!validFileSize(file.size)) {
-      toastService.warning('PDF file must be 7MB or less');
+      toastService.warning('File size must be 7MB or less.');
       return;
     }
 
@@ -95,7 +95,7 @@ export default function DocumentListPage() {
 
       if (!uploadFile && !uploadTitle) {
         toastService.warning(
-          'You have to upload a file and select its title firstly'
+          'Please provide both a file and a title.'
         );
         return;
       }
@@ -125,7 +125,7 @@ export default function DocumentListPage() {
 
       if (response?.success) {
         toastService.success(
-          response?.message ?? 'Your request under processing....'
+          response?.message ?? 'Your document is being processed...'
         );
 
         setUploadTitle('');
@@ -137,11 +137,11 @@ export default function DocumentListPage() {
         // fetchDocuments();
         refetchData();
       } else {
-        toastService.error('Error happened while uploading your document');
+        toastService.error('An error occurred while uploading your document.');
       }
     } catch (error) {
       toastService.error(
-        error?.message ?? 'Something went wrong while uploading the Document'
+        error?.message ?? 'An error occurred during document upload.'
       );
     } finally {
       setUploading(false);
@@ -167,17 +167,17 @@ export default function DocumentListPage() {
 
       if (response?.success) {
         toastService.success(
-          response?.message ?? 'Document successfully deleted'
+          response?.message ?? 'Document deleted successfully.'
         );
 
         //Reload the documents to be up to date
         // fetchDocuments();
         refetchData();
       } else {
-        toastService.error('Something went wrong while deleting the document');
+        toastService.error('An error occurred while deleting the document.');
       }
     } catch (error) {
-      toastService.error(error?.message ?? 'Failed to fetch documents.');
+      toastService.error(error?.message ?? 'Unable to load documents.');
     }
   }
 

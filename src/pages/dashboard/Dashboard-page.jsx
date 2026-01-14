@@ -32,7 +32,7 @@ export default function DashboardPage() {
       } catch (error) {
         console.error(error);
 
-        toastService.error('Failed to fetch dashboard data.');
+        toastService.error('Unable to load dashboard data.');
       } finally {
         setLoading(false);
       }
@@ -160,8 +160,8 @@ export default function DashboardPage() {
                       <div className="flex gap-2 items-center">
                         <div
                           className={` inline-flex  justify-center w-3 h-3 rounded-full ${activity.type === 'document'
-                              ? 'bg-linear-to-r from-blue-400 to-cyan-500'
-                              : 'bg-linear-to-r from-violet-400 to-purple-500'
+                            ? 'bg-linear-to-r from-blue-400 to-cyan-500'
+                            : 'bg-linear-to-r from-violet-400 to-purple-500'
                             }`}
                         />
 

@@ -18,7 +18,7 @@ export default function AIActionsTab() {
   async function handleGenerateSummary() {
     try {
       if (!documentId) {
-        toastService.warning('Document id is missing');
+        toastService.warning('Document ID is missing.');
         return;
       }
 
@@ -29,10 +29,10 @@ export default function AIActionsTab() {
         setSummary(response.data.summary);
         setActiveModal('summary');
       } else {
-        toastService.error('Empty response');
+        toastService.error('Received an empty response from the server.');
       }
     } catch (error) {
-      toastService.error(error?.message ?? 'Error while generating summary');
+      toastService.error(error?.message ?? 'An error occurred while generating the summary.');
     } finally {
       setIsLoading(false);
     }
@@ -42,7 +42,7 @@ export default function AIActionsTab() {
     e.preventDefault();
     try {
       if (!documentId) {
-        toastService.warning('Document id is missing');
+        toastService.warning('Document ID is missing.');
         return;
       }
 
@@ -53,11 +53,11 @@ export default function AIActionsTab() {
         setConceptAnswer(response.data.answer);
         setActiveModal('explanation');
       } else {
-        toastService.error('Empty response');
+        toastService.error('Received an empty response from the server.');
       }
     } catch (error) {
       toastService.error(
-        error?.message ?? 'Error while explaining your concept'
+        error?.message ?? 'An error occurred while explaining the concept.'
       );
     } finally {
       setIsLoading(false);

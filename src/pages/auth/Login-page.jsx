@@ -34,14 +34,14 @@ export default function LoginPage() {
 
         navigate('/dashboard');
 
-        toastService.success(response?.message ?? 'Logged successfully');
+        toastService.success(response?.message ?? 'Login successful!');
 
         return;
       }
 
-      toastService.error('Something went wrong while logging');
+      toastService.error('An error occurred while logging in.');
     } catch (error) {
-      toastService.error(error?.message ?? 'Error happen while logging');
+      toastService.error(error?.message ?? 'An error occurred during login.');
     } finally {
       setLoading(false);
     }
@@ -51,17 +51,17 @@ export default function LoginPage() {
     let valid = true;
 
     if (!email) {
-      toastService.warning('Email can not be empty.');
+      toastService.warning('Please enter your email address.');
       valid = false;
     }
 
     if (!password) {
-      toastService.warning('Password can not be empty.');
+      toastService.warning('Please enter your password.');
       valid = false;
     }
 
     if (email && !utils.isValidEmail(email)) {
-      toastService.warning('Email not valid.');
+      toastService.warning('Please enter a valid email address.');
       valid = false;
     }
 

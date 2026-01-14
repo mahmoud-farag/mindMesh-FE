@@ -39,13 +39,13 @@ export default function UserProfilePage() {
 
         } else {
 
-          toastService.error('User data not found, or something went wrong');
+          toastService.error('Unable to retrieve user data.');
         }
 
 
       } catch (error) {
 
-        toastService.error(error?.message ?? 'Error while getting user profile information');
+        toastService.error(error?.message ?? 'An error occurred while loading your profile.');
 
       } finally {
         setLoading(false);
@@ -80,20 +80,20 @@ export default function UserProfilePage() {
 
       if (response.success) {
 
-        toastService.success(response?.message ?? 'Password updated successfully');
+        toastService.success(response?.message ?? 'Password updated successfully. Please log in again.');
 
         logoutHandler();
         navigate('/login');
 
       } else {
-        toastService.error('Something went wrong while updating your password');
+        toastService.error('An error occurred while updating your password.');
 
       }
 
 
     } catch (error) {
 
-      toastService.error(error?.message ?? 'Error while changing the Password');
+      toastService.error(error?.message ?? 'Unable to change password.');
 
     } finally {
 
@@ -107,32 +107,32 @@ export default function UserProfilePage() {
 
     if (!currentPassword) {
 
-      toastService.warning('Current Password field is empty');
+      toastService.warning('Please enter your current password.');
       valid = false;
     }
 
 
     if (!newPassword) {
 
-      toastService.warning('New Password field is empty.');
+      toastService.warning('Please enter a new password.');
       valid = false;
     }
 
     if (!confirmNewPassword) {
 
-      toastService.warning('Confirmed new Password field is empty.');
+      toastService.warning('Please confirm your new password.');
       valid = false;
     }
 
     if (newPassword && !utils.isStrongPassword(newPassword)) {
 
-      toastService.warning('New Password Very weak.');
+      toastService.warning('New password is too weak.');
       valid = false;
     }
 
     if (newPassword && confirmNewPassword && (newPassword !== confirmNewPassword)) {
 
-      toastService.warning('New Password and Confirmed password not identical.');
+      toastService.warning('New passwords do not match.');
       valid = false;
 
     }
