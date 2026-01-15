@@ -50,18 +50,18 @@ function App() {
 
           <Route path="/documents/:id" element={<DocumentDetailsPage />}>
 
-            <Route index  element={<Navigate to='content' replace/>} />
+            <Route index element={<Navigate to='content' replace />} />
 
             <Route path="content" element={<ContentTab />} />
             <Route path="ai-actions" element={<AIActionsTab />} />
             <Route path="flashcard-study" element={<FlashcardsTab />} />
             <Route path="quizzes-study" element={<QuizzesTab />} />
             <Route path="chat" element={<ChatTab />} />
-            
+
           </Route>
 
           <Route
-            path="/documents/:id/flashcards"
+            path="/documents/:documentId/flashcards/:setId"
             element={<FLashCardDetailsPage />}
           />
 

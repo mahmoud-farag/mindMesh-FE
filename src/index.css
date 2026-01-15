@@ -19,3 +19,14 @@
     background-color: #fcfbfc;
   }
 }
+
+@layer components {
+  .iFlex-center {
+    @apply inline-flex justify-center items-center gap-2;
+
+  }
+
+  .flex-center {
+    @apply flex justify-center items-center gap-2;
+  }
+}
