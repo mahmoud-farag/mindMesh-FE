@@ -24,7 +24,7 @@ export default function Button({
 
   //* JSX
   const baseStyles =
-    'cursor-pointer inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-200 active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 whitespace-nowrap';
+    'cursor-pointer iFlex-center font-semibold rounded-xl transition-all duration-200 active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 whitespace-nowrap';
   const variantStyles = {
     primary:
       'bg-linear-to-r from-violet-500 to-purple-500 text-white  shadow-lg shadow-violet-500/25 hover:from-violet-600 hover:to-purple-600 hover:shadow-xl hover:shadow-violet-500/35',

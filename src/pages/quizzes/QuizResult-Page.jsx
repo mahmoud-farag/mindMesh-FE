@@ -102,17 +102,17 @@ export default function QuizResultPage() {
           </p>
         </div>
 
-        <div className=" flex gap-5 justify-center ">
-          <div className="border px-5 py-2 iFlex-center text-slate-600 font-semibold rounded-xl border-slate-300 bg-slate-50 shadow-sm">
+        <div className="flex flex-wrap gap-3 sm:gap-5 justify-center px-4">
+          <div className="border px-3 py-1.5 sm:px-5 sm:py-2 iFlex-center text-slate-600 font-semibold rounded-xl border-slate-300 bg-slate-50 shadow-sm text-sm sm:text-base">
             <CirclePile className="" />
             <span className="pt-2">{totalQuestions} Total</span>
           </div>
-          <div className="border px-5 py-2 iFlex-center rounded-xl border-emerald-300 bg-emerald-100 text-emerald-700 shadow-sm font-semibold">
-            <CircleCheck />
+          <div className="border px-3 py-1.5 sm:px-5 sm:py-2 iFlex-center rounded-xl border-emerald-300 bg-emerald-100 text-emerald-700 shadow-sm font-semibold text-sm sm:text-base">
+            <CircleCheck className="size-4 sm:size-5" />
             <span className="pt-1">{score} Correct</span>
           </div>
-          <div className="border px-5 py-2 iFlex-center rounded-xl border-red-300 bg-red-100 text-red-500 shadow-sm font-semibold">
-            <CircleX />
+          <div className="border px-3 py-1.5 sm:px-5 sm:py-2 iFlex-center rounded-xl border-red-300 bg-red-100 text-red-500 shadow-sm font-semibold text-sm sm:text-base">
+            <CircleX className="size-4 sm:size-5" />
             <span className="pt-1 ">{wrongAnswers} Wrong</span>
           </div>
         </div>
@@ -164,20 +164,19 @@ export default function QuizResultPage() {
                 return (
                   <div
                     key={option}
-                    className={`border min-h-14 py-2 flex items-center justify-between px-3 border-slate-300 rounded-xl shadow-md ${
-                      isOptionCorrect
-                        ? 'bg-emerald-100 border-emerald-300'
-                        : isOptionSelected && !isCorrect
+                    className={`border min-h-14 py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between px-3 gap-2 border-slate-300 rounded-xl shadow-md ${isOptionCorrect
+                      ? 'bg-emerald-100 border-emerald-300'
+                      : isOptionSelected && !isCorrect
                         ? 'bg-red-100 border-red-300'
                         : 'bg-slate-50'
-                    } `}
+                      } `}
                   >
                     <p className="tracking-wide text-slate-700 font-medium">
                       {option}
                     </p>
 
                     {/* Badges */}
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
                       {isOptionSelected && !isCorrect && (
                         <div className="flex items-center gap-1 px-3 py-1 rounded-lg bg-red-100 border border-red-200 text-red-600 text-sm font-semibold">
                           <CircleX className="size-4" />
@@ -197,10 +196,10 @@ export default function QuizResultPage() {
               })}
             </div>
 
-            <div className="shadow-md border p-4 flex gap-3 bg-slate-100 border-slate-300 rounded-xl ">
+            <div className="shadow-md border p-3 md:p-4 flex gap-3 bg-slate-100 border-slate-300 rounded-xl ">
               <div className=" iFlex-center">
                 <p className="">
-                  <ScanSearch className="size-10" />
+                  <ScanSearch className="size-6 md:size-10" />
                 </p>
               </div>
               <div className="">

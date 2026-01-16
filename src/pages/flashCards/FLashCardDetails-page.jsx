@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { useGetData } from '../../context/customHooks';
 import { flashCardsService } from '../../services';
-import { Loader } from '../../components/common';
+import { GoBackButton, Loader } from '../../components/common';
 import toastService from '../../utils/toasterUtils';
 
 export default function FLashCardDetailsPage() {
@@ -140,15 +140,17 @@ export default function FLashCardDetailsPage() {
   if (!currentCard) return null;
 
   return (
-    <div className="p-6 md:p-10">
+    <div className="p-1 md:p-10">
       <div className="space-y-4">
-        <button
+
+        <GoBackButton />
+        {/* <button
           onClick={() => navigate(-1)}
           className="cursor-pointer flex items-center gap-2 text-slate-500 hover:text-violet-600 transition-colors font-medium group"
         >
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
           <span>Back To Sets</span>
-        </button>
+        </button> */}
         <div className="space-y-6 max-w-4xl mx-auto">
           {/* Card Container */}
           <div
@@ -160,7 +162,7 @@ export default function FLashCardDetailsPage() {
                 }`}
             >
               {/* Front Face */}
-              <div className="absolute inset-0 w-full h-full bg-white rounded-3xl p-6 md:p-10 flex flex-col backface-hidden border border-slate-200">
+              <div className="absolute inset-0 w-full h-full bg-white rounded-3xl p-4 sm:p-6 md:p-10 flex flex-col backface-hidden border border-slate-200">
                 {/* Top Row */}
                 <div className="flex justify-between items-start mb-4">
                   <span className="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-wider rounded-full">
@@ -179,20 +181,20 @@ export default function FLashCardDetailsPage() {
 
                 {/* Content */}
                 <div className="flex-1 flex items-center justify-center overflow-y-auto no-scrollbar">
-                  <h3 className="text-xl md:text-3xl font-semibold text-slate-800 text-center leading-relaxed">
+                  <h3 className="text-lg sm:text-xl md:text-3xl font-semibold text-slate-800 text-center leading-relaxed">
                     {currentCard.question}
                   </h3>
                 </div>
 
                 {/* Bottom */}
-                <div className="text-slate-400 text-sm font-medium flex items-center justify-center gap-2 animate-pulse mt-6">
+                <div className="text-slate-400 text-sm font-medium flex-center animate-pulse mt-6">
                   <RotateCw className="w-4 h-4" />
                   Click to reveal answer
                 </div>
               </div>
 
               {/* Back Face */}
-              <div className="absolute inset-0 w-full h-full bg-linear-to-br from-violet-400 to-violet-600 rounded-3xl p-6 md:p-10 flex flex-col backface-hidden rotate-y-180 text-white">
+              <div className="absolute inset-0 w-full h-full bg-linear-to-br from-violet-400 to-violet-600 rounded-3xl p-4 sm:p-6 md:p-10 flex flex-col backface-hidden rotate-y-180 text-white">
                 {/* Top Row */}
                 <div className="flex justify-start mb-4">
                   <span className="px-3 py-1 bg-white/20 text-white text-xs font-bold uppercase tracking-wider rounded-full backdrop-blur-sm">
@@ -202,7 +204,7 @@ export default function FLashCardDetailsPage() {
 
                 {/* Content */}
                 <div className="flex-1 flex items-center justify-center overflow-y-auto no-scrollbar">
-                  <p className="text-lg md:text-2xl font-medium text-center leading-relaxed">
+                  <p className="text-base sm:text-lg md:text-2xl font-medium text-center leading-relaxed">
                     {currentCard.answer}
                   </p>
                 </div>
@@ -211,7 +213,7 @@ export default function FLashCardDetailsPage() {
           </div>
 
           {/* Navigation Controls */}
-          <div className="flex items-center justify-center gap-8">
+          <div className="flex items-center justify-center gap-12 sm:gap-8 ">
             <button
               onClick={handlePrev}
               disabled={currentIndex === 0}

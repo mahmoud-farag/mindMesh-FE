@@ -121,7 +121,7 @@ export default function QuizzesTab() {
   if (!quizzes || quizzes.length === 0) {
     return (
       <>
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-12 flex flex-col items-center justify-center text-center min-h-[400px]">
+        <div className="p-12 flex flex-col items-center justify-center text-center min-h-[400px]">
           <div className="w-16 h-16 bg-violet-100 rounded-2xl flex items-center justify-center mb-6">
             <GraduationCap className="w-8 h-8 text-violet-600" />
           </div>
@@ -157,13 +157,14 @@ export default function QuizzesTab() {
           confirmText="Proceed"
           onConfirm={handleProceedGenerate}
           isLoading={isGenerating}
+          size="sm"
         >
           <div className="space-y-4">
             <div className="p-2">
-              <label className="block text-sm font-medium text-slate-700 mb-1">
+              <label className="block text-sm md:text-xl font-medium text-slate-700 mb-1">
                 Number of Questions
               </label>
-              <p className="text-xs text-slate-500 mb-3">
+              <p className="text-xs md:text-lg text-slate-500 mb-3">
                 Choose between 1 and 20 questions for your quiz.
               </p>
               <input
@@ -177,7 +178,7 @@ export default function QuizzesTab() {
                     numQuestions: e.target.value,
                   }))
                 }
-                className="w-full px-4 py-2 border border-slate-300 shadow-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500  focus:shadow-md focus:shadow-violet-300 focus:border-transparent transition-all"
+                className="w-full px-4 py-2 md:py-4 border border-slate-300 shadow-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:shadow-md focus:shadow-violet-300 focus:border-transparent transition-all text-base md:text-xl"
                 placeholder="Enter number (1-20)"
               />
             </div>
@@ -190,10 +191,10 @@ export default function QuizzesTab() {
   return (
     <div className="space-y-6">
       {/* Header with Generate Button */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-purple-500 inline-flex items-center justify-center shadow-lg shadow-violet-500/25">
-            <GraduationCap className="w-5 h-5 text-white" />
+      <div className="flex items-center justify-between flex-col sm:flex-row gap-2 space-y-2">
+        <div className="flex items-center gap-3 ">
+          <div className="size-10 sm:size-12 rounded-xl bg-gradient-to-br from-violet-500 to-purple-500 inline-flex items-center justify-center shadow-lg shadow-violet-500/25">
+            <GraduationCap className="size-5 sm:size-10 text-white" />
           </div>
           <div>
             <h3 className="font-semibold text-slate-900">Quizzes</h3>
@@ -203,13 +204,15 @@ export default function QuizzesTab() {
           </div>
         </div>
 
-        <button
-          onClick={handleOpenGenerateModal}
-          className="hover:cursor-pointer active:scale-105 px-4 py-2 bg-violet-600 hover:bg-violet-700 text-white font-medium rounded-xl transition-all duration-200 inline-flex items-center gap-2 shadow-md hover:shadow-lg"
-        >
-          <Plus className="size-4" />
-          Generate New Quiz
-        </button>
+        <div className="w-full sm:w-auto  ">
+          <button
+            onClick={handleOpenGenerateModal}
+            className="w-full hover:cursor-pointer flex-center active:scale-105 px-2 py-2 sm:px-4 sm:py-2 bg-violet-600 hover:bg-violet-700 text-white font-medium rounded-xl transition-all duration-200 inline-flex items-center gap-2 shadow-md hover:shadow-lg"
+          >
+            <Plus className=" sm:size-5" />
+            <span className="text-xs md:text-lg">Generate</span>
+          </button>
+        </div>
       </div>
 
       {/* Quiz List */}
@@ -258,7 +261,7 @@ export default function QuizzesTab() {
                 {isCompleted ? (
                   <Link
                     to={`/quizzes/${quiz._id}/result`}
-                    className="w-full cursor-pointer px-4 py-2.5 hover:bg-slate-50 text-slate-700 font-medium rounded-xl border border-slate-200 hover:border-slate-300 transition-all duration-200 inline-flex items-center justify-center gap-2"
+                    className="w-full cursor-pointer px-4 py-2.5 hover:bg-slate-50 text-slate-700 font-medium rounded-xl border border-slate-200 hover:border-slate-300 transition-all duration-200 iFlex-center"
                   >
                     <BarChart2 className="w-4 h-4" />
                     View Results
@@ -266,7 +269,7 @@ export default function QuizzesTab() {
                 ) : (
                   <Link
                     to={`/quizzes/${quiz._id}`}
-                    className="w-full cursor-pointer  px-4 py-2.5 bg-linear-to-br from-violet-400 to-violet-500  hover:from-violet-500 hover:to-violet-600 text-white font-medium rounded-xl shadow-sm hover:shadow-md transition-all duration-200 inline-flex items-center justify-center gap-2"
+                    className="w-full cursor-pointer  px-4 py-2.5 bg-linear-to-br from-violet-400 to-violet-500  hover:from-violet-500 hover:to-violet-600 text-white font-medium rounded-xl shadow-sm hover:shadow-md transition-all duration-200 iFlex-center"
                   >
                     <Play className="w-4 h-4 fill-current" />
                     Start Quiz
@@ -309,13 +312,14 @@ export default function QuizzesTab() {
         confirmText="Proceed"
         onConfirm={handleProceedGenerate}
         isLoading={isGenerating}
+        size="2xl"
       >
         <div className="space-y-4">
           <div className="p-2">
-            <label className="block text-sm font-medium text-slate-700 mb-1">
+            <label className="block text-sm md:text-xl font-medium text-slate-700 mb-1">
               Number of Questions
             </label>
-            <p className="text-xs text-slate-500 mb-3">
+            <p className="text-xs md:text-base text-slate-500 mb-3">
               Choose between 1 and 20 questions for your quiz.
             </p>
             <input

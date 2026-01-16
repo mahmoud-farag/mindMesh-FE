@@ -149,13 +149,12 @@ export default function UserProfilePage() {
 
 
   return (
-    <div className=' flex flex-col min-h-screen space-y-7 p-4 '>
+    <div className=' flex flex-col min-h-screen space-y-7 p-4 max-w-4xl mx-auto w-full'>
       {/*  user Information section*/}
-      <div className='border bg-white/80 border-slate-300/70 rounded-xl p-4 shadow-sm'>
-        <p className='text-2xl font-semibold md:text-3xl tracking-tight pb-8'>User Information</p>
-
+      <div className='border bg-white/80 border-slate-300/70 rounded-xl p-4 md:p-6 shadow-sm'>
+        <p className='text-lg font-semibold md:text-3xl tracking-tight pb-6 md:pb-8'>User Information</p>
         <div>
-          <span className=''>UserName</span>
+          <span className='text-sm md:text-base font-medium text-slate-700'>UserName</span>
           <div className='pb-4 relative pt-4'>
 
             <div className='absolute inset-y-0  pl-2 flex items-center pointer-events-none text-slate-400'>
@@ -163,7 +162,7 @@ export default function UserProfilePage() {
             </div>
 
             <input
-              className='w-full h-12 pl-8 pr-4 border-2 border-slate-200 rounded-xl bg-slate-200/80 text-slate-700 placeholder-slate-400 text-lg '
+              className='w-full h-12 pl-8 pr-4 border-2 border-slate-200 rounded-xl bg-slate-200/80 text-slate-700 placeholder-slate-400 text-sm md:text-lg '
               value={userData?.username ?? 'N/A'}
               disabled={true}
             />
@@ -171,7 +170,7 @@ export default function UserProfilePage() {
 
         </div>
 
-        <span className=''>Email</span>
+        <span className='text-sm md:text-base font-medium text-slate-700'>Email</span>
         <div className='pb-4 relative pt-4'>
 
           <div className='absolute inset-y-0 pl-3 flex items-center pointer-events-none text-slate-400'>
@@ -179,7 +178,7 @@ export default function UserProfilePage() {
           </div>
 
           <input
-            className='w-full h-12 pl-10 pr-4 border-2 border-slate-200 rounded-xl bg-slate-200/80 text-slate-700 placeholder-slate-400 text-lg '
+            className='w-full h-12 pl-10 pr-4 border-2 border-slate-200 rounded-xl bg-slate-200/80 text-slate-700 placeholder-slate-400 text-sm md:text-lg '
             value={userData?.email ?? 'N/A'}
             type='email'
           />
@@ -189,12 +188,12 @@ export default function UserProfilePage() {
 
       {/* change the password section */}
 
-      <div className='border bg-white/80 border-slate-300/70 rounded-xl p-4 shadow-sm'>
-        <p className='text-2xl font-semibold md:text-3xl tracking-tight' >Change password</p>
+      <div className='border bg-white/80 border-slate-300/70 rounded-xl p-4 md:p-6 shadow-sm'>
+        <p className='text-lg font-semibold md:text-3xl tracking-tight' >Change password</p>
 
 
         <div>
-          <span className=''>Current Password</span>
+          <span className='text-sm md:text-base font-medium text-slate-700'>Current Password</span>
           <div className='pb-4 relative pt-4'>
 
             <div className='absolute inset-y-0  pl-2 flex items-center pointer-events-none text-slate-400'>
@@ -202,7 +201,7 @@ export default function UserProfilePage() {
             </div>
 
             <input
-              className='w-full h-12 pl-8 pr-4 border-2 border-slate-400 rounded-xl bg-slate-50 text-slate-700 placeholder-slate-400 text-lg '
+              className='w-full h-12 pl-8 pr-4 border-2 border-slate-400 rounded-xl bg-slate-50 text-slate-700 placeholder-slate-400 text-sm md:text-lg '
               value={currentPassword}
               type="password"
               onChange={(e) => setCurrentPassword(e.target.value)}
@@ -212,7 +211,7 @@ export default function UserProfilePage() {
         </div>
 
         <div>
-          <span className=''>New Password</span>
+          <span className='text-sm md:text-base font-medium text-slate-700'>New Password</span>
           <div className='pb-4 relative pt-4'>
 
             <div className='absolute inset-y-0  pl-2 flex items-center pointer-events-none text-slate-400'>
@@ -220,7 +219,7 @@ export default function UserProfilePage() {
             </div>
 
             <input
-              className='w-full h-12 pl-8 pr-4 border-2 border-slate-400 rounded-xl bg-slate-50 text-slate-700 placeholder-slate-400 text-lg '
+              className='w-full h-12 pl-8 pr-4 border-2 border-slate-400 rounded-xl bg-slate-50 text-slate-700 placeholder-slate-400 text-sm md:text-lg '
               value={newPassword}
               type="password"
               onChange={(e) => setNewPassword(e.target.value)}
@@ -232,7 +231,7 @@ export default function UserProfilePage() {
 
 
         <div>
-          <span className=''>Confirm New Password</span>
+          <span className='text-sm md:text-base font-medium text-slate-700'>Confirm New Password</span>
           <div className='pb-4 relative pt-4'>
 
             <div className='absolute inset-y-0  pl-2 flex items-center pointer-events-none text-slate-400'>
@@ -240,7 +239,7 @@ export default function UserProfilePage() {
             </div>
 
             <input
-              className='w-full h-12 pl-8 pr-4 border-2 border-slate-400 rounded-xl bg-slate-50 text-slate-700 placeholder-slate-400 text-lg '
+              className='w-full h-12 pl-8 pr-4 border-2 border-slate-400 rounded-xl bg-slate-50 text-slate-700 placeholder-slate-400 text-sm md:text-lg '
               value={confirmNewPassword}
               type="password"
 
@@ -251,10 +250,10 @@ export default function UserProfilePage() {
 
         </div>
 
-        <div className=' text-right'>
+        <div className='text-right'>
 
           <button
-            className='p-3 text-lg bg-violet-400 rounded-xl shadow-md text-white font-semibold  hover:bg-violet-600 cursor-pointer hover:shadow-xl transition-colors duration-200'
+            className='w-full sm:w-auto p-3 text-base sm:text-lg bg-violet-400 rounded-xl shadow-md text-white font-semibold  hover:bg-violet-600 cursor-pointer hover:shadow-xl transition-colors duration-200'
             onClick={handleUpdatePassword}
           >
             Update Password

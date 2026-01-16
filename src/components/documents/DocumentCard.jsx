@@ -72,25 +72,27 @@ export default function DocumentCard({
       </div>
 
       {/* Stats Section */}
-      <div className="mb-3 flex justify-around gap-y-2 ">
+      <div className="mb-3 flex flex-col  sm:flex-row justify-around gap-2 ">
         {document?.flashcardCount !== undefined && (
-          <div className=" bg-fuchsia-100 p-2 rounded-xl flex gap-1 items-center ">
+          <div className=" bg-fuchsia-100 p-2 rounded-xl flex gap-1 justify-center sm:items-center">
             <BookOpen
-              className="font-semibold text-fuchsia-600 inline-flex h-5 w-5"
+              className="font-semibold text-fuchsia-600 inline-flex size-5"
               strokeWidth={2}
             />
-            <span className="text-sm font-semibold text-fuchsia-700">
-              {document.flashcardCount} Flashcards
-            </span>
+            <div className="text-sm font-semibold text-fuchsia-700">
+              <span className="mr-1">{document.flashcardCount}</span>
+              <span className="">Flashcards</span>
+            </div>
           </div>
         )}
 
         {document?.quizCount !== undefined && (
-          <div className=" bg-violet-100 p-2 rounded-xl flex gap-1 items-center ">
+          <div className=" bg-violet-100 p-2 rounded-xl flex gap-1 justify-center sm:items-center ">
             <BrainCircuit className="text-violet-600" strokeWidth={2} />
-            <span className="text-sm text-violet-600 font-semibold">
-              {document.quizCount} Quizzes
-            </span>
+            <div className="text-sm text-violet-600 font-semibold">
+              <span className="mr-1">{document.quizCount}</span>
+              <span>Quizzes</span>
+            </div>
           </div>
         )}
       </div>
@@ -101,7 +103,9 @@ export default function DocumentCard({
           className="inline-flex justify-center items-center"
           strokeWidth={2}
         />
-        <span>Uploaded {moment(document.createdAt).fromNow()}</span>
+        <span className="text-sm tracking-tight sm:text-base">
+          Uploaded {moment(document.createdAt).fromNow()}
+        </span>
       </div>
 
       {/* Hover Indicator */}

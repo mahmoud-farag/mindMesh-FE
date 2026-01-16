@@ -99,7 +99,7 @@ export default function FlashcardsTab() {
   // Empty State
   if (!flashcardSets || flashcardSets.length === 0) {
     return (
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-12 flex flex-col items-center justify-center text-center min-h-[400px]">
+      <div className=" p-12 flex flex-col items-center justify-center text-center min-h-[400px]">
         <div className="w-16 h-16 bg-violet-100 rounded-2xl flex items-center justify-center mb-6">
           <BrainCircuit className="w-8 h-8 text-violet-600" />
         </div>
@@ -229,9 +229,9 @@ export default function FlashcardsTab() {
                   onClick={() => {
                     navigate(`/documents/${documentId}/flashcards/${set._id}`);
                   }}
-                  className="hover:text-white  hover:bg-violet-500 w-full py-3 rounded-xl bg-violet-50 text-violet-600 font-bold  transition-colors flex items-center justify-center gap-2 mt-auto"
+                  className="hover:text-white  hover:bg-violet-500 w-full py-2 sm:py-3 rounded-xl bg-violet-50 text-violet-600 text-sm sm:text-base font-bold  transition-colors flex-center mt-auto"
                 >
-                  <Sparkles className="size-5" />
+                  <Sparkles className="size-4 sm:size-5" />
                   Study Now
                 </button>
               </div>

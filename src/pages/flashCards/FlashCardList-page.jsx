@@ -20,8 +20,6 @@ export default function FlashCardListPage() {
     showSuccessToast: false,
   });
 
-  console.log('---flashcards--');
-  console.log(flashcards);
 
   if (loading) {
     return (
@@ -48,12 +46,10 @@ export default function FlashCardListPage() {
   }
 
   return (
-    <div className="p-6 md:p-10 space-y-8 w-full max-w-[1920px] mx-auto">
+    <div className="p-4 md:p-10 space-y-8 w-full max-w-[1920px] mx-auto">
       {/* Header */}
       <div>
-        <h1 className="text-2xl md:text-3xl font-bold text-slate-800 tracking-tight">
-          All Flashcard Sets
-        </h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-slate-800 tracking-tight">All Flashcard Sets</h1>
       </div>
 
       {/* Grid */}
@@ -62,39 +58,32 @@ export default function FlashCardListPage() {
           // Calculate progress
           const cards = set.flashcards || [];
           const totalCards = cards.length;
-          const reviewedCount = cards.filter(
-            (card) => card.reviewCount > 0
-          ).length;
-          const progress =
-            totalCards > 0 ? Math.round((reviewedCount / totalCards) * 100) : 0;
+          const reviewedCount = cards.filter((card) => card.reviewCount > 0).length;
+          const progress = totalCards > 0 ? Math.round((reviewedCount / totalCards) * 100) : 0;
 
           return (
             <div
               key={set._id}
-              className="hover:bg-slate-50 hover:border-violet-300 hover:shadow-md hover:scale-105 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col gap-6 group"
+              className="hover:bg-slate-50 hover:border-violet-300 hover:shadow-md hover:scale-105 bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col gap-4 sm:gap-6 group"
             >
               {/* Card Header */}
               <div className="flex items-start justify-between gap-4">
-                <div className="size-12 rounded-xl bg-violet-50 flex-center text-violet-600 shrink-0 group-hover:scale-110 transition-transform duration-300">
-                  <BookOpen className="size-6" />
+                <div className="size-10 sm:size-12 rounded-xl bg-violet-50 flex-center text-violet-600 shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <BookOpen className="size-5 sm:size-6" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-bold text-slate-800 text-lg leading-tight line-clamp-2">
-                    {set.document?.title || 'Untitled Document'}
-                  </h3>
-                  <p className="text-xs font-semibold text-slate-400 mt-2 uppercase tracking-wider">
-                    CREATED {moment(set.createdAt).fromNow(true)} AGO
-                  </p>
+                  <h3 className="font-bold text-slate-800 text-base sm:text-lg leading-tight line-clamp-2">{set.document?.title || 'Untitled Document'}</h3>
+                  <p className="text-xs font-semibold text-slate-400 mt-1 uppercase tracking-wider">CREATED {moment(set.createdAt).fromNow(true)} AGO</p>
                 </div>
               </div>
 
               {/* Stats Badges */}
-              <div className="flex items-center gap-3">
-                <div className="px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-600 text-sm font-semibold">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-600 text-xs sm:text-sm font-semibold">
                   {totalCards} Cards
                 </div>
-                <div className="px-3 py-1.5 rounded-lg border border-violet-200 bg-violet-50 text-violet-600 text-sm font-semibold flex items-center gap-1.5">
-                  <TrendingUp className="size-4" />
+                <div className="px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg border border-violet-200 bg-violet-50 text-violet-600 text-xs sm:text-sm font-semibold flex items-center gap-1.5">
+                  <TrendingUp className="size-3.5 sm:size-4" />
                   {progress}%
                 </div>
               </div>
@@ -108,23 +97,16 @@ export default function FlashCardListPage() {
                   </span>
                 </div>
                 <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-violet-500 rounded-full transition-all duration-500"
-                    style={{ width: `${progress}%` }}
-                  />
+                  <div className="h-full bg-violet-500 rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
                 </div>
               </div>
 
               {/* Action Button */}
               <button
-                onClick={() =>
-                  navigate(
-                    `/documents/${set.document?._id}/flashcards/${set._id}`
-                  )
-                }
-                className="w-full py-3 rounded-xl bg-violet-50 text-violet-600 font-bold hover:text-white  hover:bg-violet-500 transition-colors flex-center gap-2 mt-auto"
+                onClick={() => navigate(`/documents/${set.document?._id}/flashcards/${set._id}`)}
+                className="w-full py-2 sm:py-3 rounded-xl bg-violet-50 text-violet-600 text-sm sm:text-base font-bold hover:text-white  hover:bg-violet-500 transition-colors flex-center gap-2 mt-auto"
               >
-                <Sparkles className="size-5" />
+                <Sparkles className="size-4 sm:size-5" />
                 Study Now
               </button>
             </div>
