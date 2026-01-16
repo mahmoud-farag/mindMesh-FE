@@ -15,12 +15,23 @@ export default function ContentTab() {
 
   //* Helper functions
 
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'ready':
+        return 'text-emerald-400';
+      case 'processing':
+        return 'text-amber-500';
+      case 'failed':
+        return 'text-red-700';
+      default:
+        return 'text-red-900';
+    }
+  };
   //* Life cycle hooks
 
   //* Handlers
 
   //* JSX
-
 
   if (!document) {
     return <Loader />;
@@ -29,11 +40,13 @@ export default function ContentTab() {
   return (
     <div className="space-y-6">
       {/* Document Info Card */}
-      <div className=" backdrop-blur-xl border bg-white/80 border-slate-200/60 rounded-2xl p-6 shadow-lg">
-        <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
-          <FileText className="w-5 h-5 text-violet-500" />
-          Document Information
-        </h3>
+      <div className=" backdrop-blur-xl border bg-white/80 border-slate-200/60 rounded-2xl p-3 sm:p-6 shadow-lg">
+        <div className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-1 sm:gap-2 ">
+          <div>
+            <FileText className="size-6 sm:size-10 text-violet-500" />
+          </div>
+          <span className="text-lg sm:text-2xl">Document Information</span>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* File Size */}
@@ -42,12 +55,8 @@ export default function ContentTab() {
               <HardDrive className="w-5 h-5 text-violet-600" />
             </div>
             <div>
-              <p className="text-xs text-slate-500 uppercase tracking-wide">
-                File Size
-              </p>
-              <p className="text-sm font-semibold text-slate-900">
-                {utils.formateFileSize(document.fileSize) ?? 'N/A'}
-              </p>
+              <p className="text-xs text-slate-500 uppercase tracking-wide">File Size</p>
+              <p className="text-sm font-semibold text-slate-900">{utils.formateFileSize(document.fileSize) ?? 'N/A'}</p>
             </div>
           </div>
 
@@ -57,12 +66,8 @@ export default function ContentTab() {
               <Calendar className="w-5 h-5 text-violet-600" />
             </div>
             <div>
-              <p className="text-xs text-slate-500 uppercase tracking-wide">
-                Uploading Date
-              </p>
-              <p className="text-sm font-semibold text-slate-900">
-                {moment(document.createdAt).fromNow() ?? 'N/A'}
-              </p>
+              <p className="text-xs text-slate-500 uppercase tracking-wide">Uploading Date</p>
+              <p className="text-sm font-semibold text-slate-900">{moment(document.createdAt).fromNow() ?? 'N/A'}</p>
             </div>
           </div>
 
@@ -71,12 +76,8 @@ export default function ContentTab() {
               <UserRoundCheck className="w-5 h-5 text-violet-600" />
             </div>
             <div>
-              <p className="text-xs text-slate-500 uppercase tracking-wide">
-                Uploaded By
-              </p>
-              <p className="text-sm font-semibold text-slate-900">
-                {document?.user?.username ?? 'N/A'}
-              </p>
+              <p className="text-xs text-slate-500 uppercase tracking-wide">Uploaded By</p>
+              <p className="text-sm font-semibold text-slate-900">{document?.user?.username ?? 'N/A'}</p>
             </div>
           </div>
 
@@ -86,21 +87,9 @@ export default function ContentTab() {
               <FileText className="w-5 h-5 text-violet-600" />
             </div>
             <div>
-              <p className="text-xs text-slate-500 uppercase tracking-wide">
-                Status
-              </p>
-              <p
-                className={`text-sm font-semibold ${
-                  document?.status === 'ready'
-                    ? 'text-emerald-400'
-                    : document?.status === 'processing'
-                    ? 'text-amber-500'
-                    : 'text-red-700-900'
-                } capitalize`}
-              >
-                {document?.status === 'processing'
-                  ? 'Still under processing'
-                  : document?.status}
+              <p className="text-xs text-slate-500 uppercase tracking-wide">Status</p>
+              <p className={`text-sm font-semibold ${getStatusColor(document?.status)} capitalize`}>
+                {document?.status === 'processing' ? 'Still under processing' : document?.status}
               </p>
             </div>
           </div>
@@ -113,9 +102,7 @@ export default function ContentTab() {
           <div className="bg-white/80 border border-slate-200/60 rounded-2xl p-4">
             <h3 className="text-lg font-semibold mb-4">Document Preview</h3>
             <iframe
-              src={`https://docs.google.com/viewer?url=${encodeURIComponent(
-                document.S3FileUrl
-              )}&embedded=true`}
+              src={`https://docs.google.com/viewer?url=${encodeURIComponent(document.S3FileUrl)}&embedded=true`}
               className="w-full h-[700px] rounded-xl border border-slate-200"
               title={document.title}
             />

@@ -88,22 +88,24 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-linear-to-br from-slate-100 to-slate-200">
-      <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] bg-size-[16px_16px]" />
+    <div className="flex items-center justify-center min-h-screen bg-linear-to-br from-slate-100 to-slate-200 py-8 sm:py-12">
 
-      <div className="relative w-full max-w-md px-6">
-        <div className="bg-white/80 backdrop-blur-xl border border-slate-200/60 rounded-2xl p-8 shadow-lg">
+      <div className="relative w-full max-w-md px-4 sm:px-6">
+        <div className="bg-white/80 backdrop-blur-xl border border-slate-200/60 rounded-2xl p-6 sm:p-8 shadow-lg">
           {/* Header */}
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-linear-to-br from-violet-400 to-purple-500 shadow-lg shadow-violet-100">
-              <BrainCircuit className="w-7 h-7 text-white" strokeWidth={2} />
+          <div className="text-center mb-8 sm:mb-10">
+            <div className="inline-flex items-center justify-center size-12 sm:size-14 rounded-2xl bg-linear-to-br from-violet-400 to-purple-500 shadow-lg shadow-violet-100 mb-4 sm:mb-6">
+              <BrainCircuit
+                className="size-6 sm:size-7 text-white"
+                strokeWidth={2}
+              />
             </div>
 
-            <h1 className="text-2xl font-medium text-slate-900 tracking-tight mb-2">
+            <h1 className="text-xl md:text-3xl font-medium text-slate-900 tracking-tight mb-2">
               Create An Account
             </h1>
 
-            <p className="text-slate-500 text-sm">
+            <p className="text-slate-500 text-sm md:text-lg">
               Now you can start your awesome learning journey
             </p>
           </div>
@@ -112,7 +114,7 @@ export default function RegisterPage() {
           <div className="space-y-5">
             {/* User Name */}
             <div className="space-y-2">
-              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wide">
+              <label className="block text-xs md:text-sm font-semibold text-slate-700 uppercase tracking-wide">
                 User Name
               </label>
               <div className="relative group">
@@ -131,13 +133,13 @@ export default function RegisterPage() {
                   onFocus={() => setFocusedField('username')}
                   onBlur={() => setFocusedField(null)}
                   placeholder="Ahmed-ali"
-                  className="w-full h-12 pl-12 pr-4 border-2 border-slate-200 rounded-xl bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm font-medium transition-all duration-200 focus:outline-none focus:border-violet-500 focus:bg-white focus:shadow-lg focus:shadow-violet-500/10"
+                  className="w-full h-10 sm:h-12 pl-12 pr-4 border-2 border-slate-200 rounded-xl bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm md:text-base font-medium transition-all duration-200 focus:outline-none focus:border-violet-500 focus:bg-white focus:shadow-lg focus:shadow-violet-500/10"
                 />
               </div>
             </div>
             {/* Email Field */}
             <div className="space-y-2">
-              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wide">
+              <label className="block text-xs md:text-sm font-semibold text-slate-700 uppercase tracking-wide">
                 Email
               </label>
               <div className="relative group">
@@ -156,13 +158,13 @@ export default function RegisterPage() {
                   onFocus={() => setFocusedField('email')}
                   onBlur={() => setFocusedField(null)}
                   placeholder="you@example.com"
-                  className="w-full h-12 pl-12 pr-4 border-2 border-slate-200 rounded-xl bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm font-medium transition-all duration-200 focus:outline-none focus:border-violet-500 focus:bg-white focus:shadow-lg focus:shadow-violet-500/10"
+                  className="w-full h-10 sm:h-12 pl-12 pr-4 border-2 border-slate-200 rounded-xl bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm md:text-base font-medium transition-all duration-200 focus:outline-none focus:border-violet-500 focus:bg-white focus:shadow-lg focus:shadow-violet-500/10"
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wide">
+              <label className="block text-xs md:text-sm font-semibold text-slate-700 uppercase tracking-wide">
                 Password
               </label>
 
@@ -183,7 +185,7 @@ export default function RegisterPage() {
                   onFocus={() => setFocusedField('password')}
                   onBlur={() => setFocusedField(null)}
                   placeholder="••••••••"
-                  className="w-full h-12 pl-12 pr-4 border-2 border-slate-200 rounded-xl bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm font-medium transition-all duration-200 focus:outline-none focus:border-violet-500 focus:bg-white focus:shadow-lg focus:shadow-violet-500/10"
+                  className="w-full h-10 sm:h-12 pl-12 pr-4 border-2 border-slate-200 rounded-xl bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm md:text-base font-medium transition-all duration-200 focus:outline-none focus:border-violet-500 focus:bg-white focus:shadow-lg focus:shadow-violet-500/10"
                 />
               </div>
             </div>
@@ -201,9 +203,9 @@ export default function RegisterPage() {
             <button
               onClick={handleSubmit}
               disabled={loading}
-              className="group relative w-full h-12 bg-linear-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 active:scale-[0.98] text-white text-sm font-semibold rounded-xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-violet-500/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 shadow-lg shadow-violet-500/25 overflow-hidden"
+              className="group relative w-full h-10 sm:h-12 bg-linear-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 active:scale-[0.98] text-white text-sm md:text-base font-semibold rounded-xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-violet-500/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 shadow-lg shadow-violet-500/25 overflow-hidden"
             >
-              <span className="relative z-10 flex items-center justify-center gap-2">
+              <span className="relative z-10 flex-center">
                 {loading ? (
                   <>
                     <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -222,24 +224,34 @@ export default function RegisterPage() {
 
               <div className="absolute inset-0 bg-linear-to-r from-white/0 via-white/20 to-white/0 -translate-x-full transition-transform duration-700" />
             </button>
-          </div>
 
-          {/* Footer */}
-          <div className="mt-8 pt-6 border-t border-slate-200/60">
-            <p className="text-center text-sm text-slate-600">
-              Already Have An Account?
+            <div className="flex flex-wrap items-center justify-center gap-1 text-sm text-slate-600">
+              <span>Already Have An Account?</span>
               <Link
                 to="/login"
                 className="font-semibold text-violet-600 hover:text-violet-700 transition-colors duration-200"
               >
                 Sign In
               </Link>
-            </p>
+            </div>
           </div>
+
+          {/* Footer */}
+          {/* <div className="mt-8 pt-6 border-t border-slate-200/60">
+            <div className="flex flex-wrap items-center justify-center gap-1 text-sm text-slate-600">
+              <span>Already Have An Account?</span>
+              <Link
+                to="/login"
+                className="font-semibold text-violet-600 hover:text-violet-700 transition-colors duration-200"
+              >
+                Sign In
+              </Link>
+            </div>
+          </div> */}
         </div>
 
         {/* Subtle footer text */}
-        <p className="text-center text-xs text-slate-400 mt-6">
+        <p className="text-center text-xs md:text-sm text-slate-400 mt-6 px-4">
           By continuing, you agree to our Terms & Privacy Policy
         </p>
       </div>

@@ -91,7 +91,7 @@ export default function ChatTab() {
   }
 
   return (
-    <div className="h-[62vh] flex flex-col">
+    <div className="flex flex-col">
       {/* header */}
       <div className="shrink-0 p-2 sm:p-3">
         <p className="text-base sm:text-xl tracking-tight">
@@ -100,7 +100,7 @@ export default function ChatTab() {
       </div>
 
       {/* body - scrollable messages area */}
-      <div className="bg-white rounded-2xl flex-1 p-3 mb-4 shadow-md overflow-y-auto">
+      <div className="bg-white rounded-2xl flex-1 p-3 mb-4 shadow-md">
         {history?.length > 0 ? (
           <>
             {history.map((record, index) => (
@@ -138,14 +138,14 @@ export default function ChatTab() {
             value={question}
             disabled={isPrepareAnswer}
             onChange={(e) => setQuestion(e.target.value)}
-            className=" min-h-15 bg-white text-slate-800 shadow-md focus:shadow-lg focus:shadow-violet-200 placeholder:text-xs  ms:placeholder:text-base sm:text-base placeholder:text-slate-400 px-4 rounded-xl focus:outline-violet-400 transition-all duration-300 focus:border-violet-300 flex-1 focus:text-sm sm:focus:text-base focus:tracking-tight   "
+            className=" min-h-[50px] sm:min-h-15 py-3 bg-white text-slate-800 shadow-md focus:shadow-lg focus:shadow-violet-200 placeholder:text-sm sm:placeholder:text-base placeholder:text-slate-400 px-4 rounded-xl focus:outline-violet-400 transition-all duration-300 focus:border-violet-300 flex-1 text-base"
             placeholder="Ask any question related to the document"
           />
           <button
-            className="min-h-15 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer inline-flex justify-center items-center rounded-xl bg-violet-500 size-13"
+            className="min-h-[50px] sm:min-h-15 w-[50px] sm:w-15 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer inline-flex justify-center items-center rounded-xl bg-violet-500 shrink-0"
             disabled={!question?.trim() || isPrepareAnswer}
           >
-            <SendIcon className="size-6 text-white" />
+            <SendIcon className="size-5 sm:size-6 text-white" />
           </button>
         </form>
       </div>

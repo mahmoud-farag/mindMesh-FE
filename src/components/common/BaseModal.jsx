@@ -100,7 +100,7 @@ export default function BaseModal({
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex justify-center items-center transition-all duration-300 ${isVisible ? 'bg-slate-900/50 backdrop-blur-sm' : 'bg-transparent'
+      className={`fixed inset-0 z-50 flex px-3 sm:px-0 justify-center items-center transition-all duration-300 ${isVisible ? 'bg-slate-900/50 backdrop-blur-sm' : 'bg-transparent'
         }`}
       onClick={handleBackdropClick}
     >
@@ -129,12 +129,12 @@ export default function BaseModal({
               </div>
             )}
             {title && (
-              <h2 className="text-xl font-semibold text-slate-900 tracking-tight text-center">
+              <h2 className="text-xl md:text-3xl font-semibold text-slate-900 tracking-tight text-center">
                 {title}
               </h2>
             )}
             {subtitle && (
-              <p className="text-sm text-slate-500 mt-1 text-center">
+              <p className="text-sm md:text-lg text-slate-500 mt-1 text-center">
                 {subtitle}
               </p>
             )}

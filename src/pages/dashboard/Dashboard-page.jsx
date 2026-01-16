@@ -103,13 +103,13 @@ export default function DashboardPage() {
     <div className="min-h-screen mt-4">
       <div className="background-image: radial-gradient(#e5e7eb 1px, transparent 1px) bg-size-[16px_16px] opacity-30 pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="mb-6">
-          <h1 className="text-3xl font-medium text-slate-900 tracking-tight mb-2">
+          <h1 className="text-2xl md:text-3xl font-medium text-slate-900 tracking-tight mb-2">
             Dashboard
           </h1>
-          <p className="text-slate-500 text-lg tracking-wide">
+          <p className="text-slate-500 text-base md:text-lg tracking-wide">
             Track your learning progress and activity
           </p>
         </div>
@@ -155,17 +155,17 @@ export default function DashboardPage() {
             <div className="space-y-6">
               {formattedData.map((activity, index) => (
                 <div key={activity.id || index} className="">
-                  <div className="border flex items-center justify-between p-4 rounded-xl border-slate-200 shadow-sm shadow-slate-300/50 hover:shadow-xl transition-shadow duration-200">
+                  <div className="border flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl border-slate-200 shadow-sm shadow-slate-300/50 hover:shadow-xl transition-shadow duration-200 gap-4">
                     <div className="">
-                      <div className="flex gap-2 items-center">
+                      <div className="flex gap-2 items-start sm:items-center">
                         <div
-                          className={` inline-flex  justify-center w-3 h-3 rounded-full ${activity.type === 'document'
+                          className={`mt-1.5 sm:mt-0 inline-flex shrink-0 justify-center w-3 h-3 rounded-full ${activity.type === 'document'
                             ? 'bg-linear-to-r from-blue-400 to-cyan-500'
                             : 'bg-linear-to-r from-violet-400 to-purple-500'
                             }`}
                         />
 
-                        <p className="text-xl tracking-tight text-slate-900">
+                        <p className="text-lg sm:text-xl tracking-tight text-slate-900 leading-snug">
                           {activity.type === 'document'
                             ? 'Accessed Document: '
                             : 'Attempted Quiz: '}
@@ -173,7 +173,7 @@ export default function DashboardPage() {
                         </p>
                       </div>
 
-                      <p className="text-slate-500">
+                      <p className="text-slate-500 text-sm sm:text-base ml-5 sm:ml-0 mt-1 sm:mt-0">
                         {new Date(activity.timestamp).toLocaleString()}
                       </p>
                     </div>
@@ -181,7 +181,7 @@ export default function DashboardPage() {
                     {activity.link && (
                       <a
                         href={activity.link}
-                        className="text-xl text-violet-400 hover:text-violet-600 "
+                        className="text-lg sm:text-xl text-violet-400 hover:text-violet-600 font-medium sm:font-normal self-end sm:self-auto"
                       >
                         View
                       </a>

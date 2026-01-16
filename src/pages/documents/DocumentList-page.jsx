@@ -94,22 +94,14 @@ export default function DocumentListPage() {
       setUploading(true);
 
       if (!uploadFile && !uploadTitle) {
-        toastService.warning(
-          'Please provide both a file and a title.'
-        );
+        toastService.warning('Please provide both a file and a title.');
         return;
       }
 
       const formData = new FormData();
 
-      console.log('-----uploadTitle:', uploadTitle);
-      console.log('-----uploadFile:', uploadFile);
-
       formData.append('title', uploadTitle);
       formData.append('file', uploadFile);
-
-      console.log('--formData---');
-      console.log(formData);
 
       const configs = {
         onUploadProgress: (event) => {
@@ -118,15 +110,10 @@ export default function DocumentListPage() {
           setUploadingProgress(percent);
         },
       };
-      const response = await documentService.uploadDocument(
-        { formData },
-        configs
-      );
+      const response = await documentService.uploadDocument({ formData }, configs);
 
       if (response?.success) {
-        toastService.success(
-          response?.message ?? 'Your document is being processed...'
-        );
+        toastService.success(response?.message ?? 'Your document is being processed...');
 
         setUploadTitle('');
         setUploadFile(null);
@@ -140,25 +127,19 @@ export default function DocumentListPage() {
         toastService.error('An error occurred while uploading your document.');
       }
     } catch (error) {
-      toastService.error(
-        error?.message ?? 'An error occurred during document upload.'
-      );
+      toastService.error(error?.message ?? 'An error occurred during document upload.');
     } finally {
       setUploading(false);
     }
   }
 
   async function handleConfirmation(type) {
-
     if (type === 'document-deletion') {
-
       if (!selectedDocument) return;
 
       await deleteDocument(selectedDocument._id);
       setIsDeleteModalOpen(false);
-
     }
-
   }
 
   async function deleteDocument(documentId) {
@@ -166,9 +147,7 @@ export default function DocumentListPage() {
       const response = await documentService.deleteDocument({ documentId });
 
       if (response?.success) {
-        toastService.success(
-          response?.message ?? 'Document deleted successfully.'
-        );
+        toastService.success(response?.message ?? 'Document deleted successfully.');
 
         //Reload the documents to be up to date
         // fetchDocuments();
@@ -196,19 +175,15 @@ export default function DocumentListPage() {
     <div className="min-h-screen">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px, transparent_1px)] bg-size-[16px_16px] opacity-30 pointer-event-none" />
-      <div className="relative max-w-8xl px-10 mx-auto ">
+      <div className="relative max-w-8xl px-4 sm:px-6 lg:px-8 mx-auto ">
         {/* Header */}
-        <div className="flex justify-between items-center mb-10">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-10 gap-4">
           <div>
-            <h1 className="text-2xl font-semibold text-slate-900 tracking-tight mb-2">
-              My Documents
-            </h1>
-            <p className="text-slate-500 text-lg tracking-tight">
-              Manage and organize your learning materials
-            </p>
+            <h1 className="text-2xl font-semibold text-slate-900 tracking-tight mb-2">My Documents</h1>
+            <p className="text-slate-500 text-lg tracking-tight">Manage and organize your learning materials</p>
           </div>
           {/* {documents.length > 0 && ( */}
-          <Button onClick={() => setIsUploadModalOpen(true)}>
+          <Button onClick={() => setIsUploadModalOpen(true)} className="w-full sm:w-auto">
             <Plus className="w-5 h-5" strokeWidth={2.5} />
             Upload Document
           </Button>
@@ -217,14 +192,9 @@ export default function DocumentListPage() {
 
         {/* cards list */}
         {isThereDocsToRender ? (
-          <div className="grid gap-6 grid-cols-[repeat(auto-fill,minmax(400px,400px))]">
+          <div className="grid gap-6 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
             {(documents ?? []).map((document) => (
-              <DocumentCard
-                key={document._id}
-                document={document}
-                setSelectedDocument={setSelectedDocument}
-                setIsDeleteModalOpen={setIsDeleteModalOpen}
-              />
+              <DocumentCard key={document._id} document={document} setSelectedDocument={setSelectedDocument} setIsDeleteModalOpen={setIsDeleteModalOpen} />
             ))}
           </div>
         ) : (
@@ -255,11 +225,7 @@ export default function DocumentListPage() {
       >
         <p className="text-md text-slate-600 ">
           Are you sure you want to delete the document:
-          <span className="font-semibold text-slate-900">
-            {' '}
-            {selectedDocument?.title}
-          </span>
-          ? This action cannot be undone.
+          <span className="font-semibold text-slate-900"> {selectedDocument?.title}</span>? This action cannot be undone.
         </p>
       </ConfirmationModal>
 

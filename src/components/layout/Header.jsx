@@ -45,11 +45,11 @@ export default function Header({ onToggleSidebar }) {
                 <User size={26} strokeWidth={2} />
               </div>
 
-              <div >
-                <p className='text-md font-semibold text-slate-900 '>
+              <div className="flex flex-col items-start">
+                <p className="text-sm md:text-md font-semibold text-slate-900 leading-tight">
                   {loggedUser?.username || 'User'}
                 </p>
-                <p className='text-sm text-slate-600'>
+                <p className="text-xs text-slate-600 hidden md:block">
                   {loggedUser?.email || 'user@example.com'}
                 </p>
               </div>
