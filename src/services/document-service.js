@@ -7,15 +7,14 @@ const DOCUMENTS_PATHS = {
   GET_DOCUMENT_BY_ID: (id) => `/api/documents/${id}`,
   UPDATE_DOCUMENT: (id) => `/api/documents/${id}`,
   DELETE_DOCUMENT: (id) => `/api/documents/${id}`,
+  INIT_UPLOAD: '/api/documents/init-upload',
+  CONFIRM_UPLOAD: (id) => `/api/documents/${id}/confirm-upload`,
 };
-
 
 const documentService = {};
 
-
 documentService.uploadDocument = async (params = {}, options = {}) => {
   try {
-
     const { formData } = params;
 
     // Send formData directly - NOT wrapped in an object
@@ -24,14 +23,64 @@ documentService.uploadDocument = async (params = {}, options = {}) => {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
-      ...options,
+      onUploadProgress: options.onUploadProgress,
     });
 
     return response.data;
-
   } catch (error) {
-
     throw error.response?.data ?? { message: 'Error while uploading new pdf file' };
+  }
+};
+
+documentService.initUpload = async (params = {}) => {
+  try {
+    const { title, fileName, fileSize, mimeType } = params;
+    const response = await axiosClient.post(DOCUMENTS_PATHS.INIT_UPLOAD, {
+      title,
+      fileName,
+      fileSize,
+      mimeType,
+    });
+
+    return response.data;
+  } catch (error) {
+    throw error.response?.data ?? { message: 'Error initializing upload' };
+  }
+};
+
+documentService.uploadToS3 = async ({ uploadUrl, file }, options = {}) => {
+  try {
+    // ! Use axios without the default client to avoid Auth headers interfering with S3
+    const response = await axiosClient.put(uploadUrl, file, {
+      headers: {
+        'Content-Type': file.type,
+      },
+      transformRequest: [
+        (data, headers) => {
+          // Remove Authorization header for S3 request
+          if (headers?.Authorization)
+            delete headers.Authorization;
+
+          if (headers?.common?.Authorization)
+            delete headers.common.Authorization;
+
+          return data;
+        },
+      ],
+      onUploadProgress: options.onUploadProgress,
+    });
+    return response;
+  } catch (error) {
+    throw new Error(error?.message ?? 'Failed to upload file to S3');
+  }
+};
+
+documentService.confirmUpload = async (documentId) => {
+  try {
+    const response = await axiosClient.patch(DOCUMENTS_PATHS.CONFIRM_UPLOAD(documentId));
+    return response.data;
+  } catch (error) {
+    throw error.response?.data ?? { message: 'Error confirming upload' };
   }
 };
 
