@@ -22,7 +22,7 @@ export default function DocumentListPage() {
 
   // State for delete confirmation modal
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [deleting, setDeleting] = useState(false);
+  // const [deleting, setDeleting] = useState(false);
   const [selectedDocument, setSelectedDocument] = useState(null);
   const [uploadingProgress, setUploadingProgress] = useState(0);
 
@@ -88,6 +88,59 @@ export default function DocumentListPage() {
     setUploadTitle(file.name.replace(/\.[^/.]+$/, ''));
   }
 
+  async function handleUploadV2(e) {
+    e.preventDefault();
+    try {
+      setUploading(true);
+
+      if (!uploadFile && !uploadTitle) {
+        toastService.warning('Please provide both a file and a title.');
+        return;
+      }
+
+      // 1. Initialize Upload (Get Presigned URL)
+      const { data } = await documentService.initUpload({
+        title: uploadTitle,
+        fileName: uploadFile.name,
+        fileSize: uploadFile.size,
+        mimeType: uploadFile.type
+      });
+
+      const { uploadUrl, document } = data;
+
+      const options = {
+        onUploadProgress: (event) => {
+          if (!event.total) return;
+          const percent = Math.round((event.loaded * 100) / event.total);
+          setUploadingProgress(percent);
+        },
+      };
+
+      // 2. Upload directly to S3
+      await documentService.uploadToS3({ uploadUrl, file: uploadFile }, options);
+
+      // 3. Confirm upload completion (update status to ready-for-processing)
+      await documentService.confirmUpload(document._id);
+
+      // 4. Success
+      toastService.success('Document uploaded successfully!');
+
+      setUploadTitle('');
+      setUploadFile(null);
+      setIsUploadModalOpen(false);
+      setUploadingProgress(0);
+
+      // Refresh list
+      refetchData();
+
+    } catch (error) {
+      toastService.error(error?.message ?? 'An error occurred during upload.');
+      setUploadingProgress(0);
+    } finally {
+      setUploading(false);
+    }
+  }
+
   async function handleUpload(e) {
     e.preventDefault();
     try {
@@ -103,14 +156,14 @@ export default function DocumentListPage() {
       formData.append('title', uploadTitle);
       formData.append('file', uploadFile);
 
-      const configs = {
+      const options = {
         onUploadProgress: (event) => {
           if (!event.total) return; // some browsers
           const percent = Math.round((event.loaded * 100) / event.total);
           setUploadingProgress(percent);
         },
       };
-      const response = await documentService.uploadDocument({ formData }, configs);
+      const response = await documentService.uploadDocument({ formData }, options);
 
       if (response?.success) {
         toastService.success(response?.message ?? 'Your document is being processed...');
@@ -182,12 +235,14 @@ export default function DocumentListPage() {
             <h1 className="text-2xl font-semibold text-slate-900 tracking-tight mb-2">My Documents</h1>
             <p className="text-slate-500 text-lg tracking-tight">Manage and organize your learning materials</p>
           </div>
-          {/* {documents.length > 0 && ( */}
-          <Button onClick={() => setIsUploadModalOpen(true)} className="w-full sm:w-auto">
-            <Plus className="w-5 h-5" strokeWidth={2.5} />
-            Upload Document
-          </Button>
-          {/* // )} */}
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            {/* {documents.length > 0 && ( */}
+            <Button onClick={() => setIsUploadModalOpen(true)} className="w-full sm:w-auto">
+              <Plus className="w-5 h-5" strokeWidth={2.5} />
+              Upload Document
+            </Button>
+            {/* // )} */}
+          </div>
         </div>
 
         {/* cards list */}
@@ -205,7 +260,8 @@ export default function DocumentListPage() {
 
       <UploadingDocumentModal
         shouldOpenModal={isUploadModalOpen}
-        handleUpload={handleUpload}
+        handleUpload={handleUploadV2}
+        // handleUpload={handleUpload}
         uploadTitle={uploadTitle}
         setUploadTitle={setUploadTitle}
         handleFileChange={handleFileChange}

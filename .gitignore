@@ -25,3 +25,9 @@ dist-ssr
 *.sln
 *.sw?
 .env
+.text
+
+
+CDK/cdk.out/
+CDK/node_modules/
+CDK/.env

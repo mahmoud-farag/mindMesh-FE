@@ -19,12 +19,14 @@ export default function ContentTab() {
     switch (status) {
       case 'ready':
         return 'text-emerald-400';
+      case 'uploaded':
+        return 'text-blue-500';
       case 'processing':
         return 'text-amber-500';
       case 'failed':
         return 'text-red-700';
       default:
-        return 'text-red-900';
+        return 'text-slate-700';
     }
   };
   //* Life cycle hooks
