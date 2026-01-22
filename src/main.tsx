@@ -7,11 +7,16 @@ import { AuthProvider } from './context/authContext.jsx';
 import { Toaster } from 'react-hot-toast';
 
 
+const rootElement = document.getElementById('root');
 
-createRoot(document.getElementById('root')).render(
+if (!rootElement) {
+  throw new Error("Failed to find the root element. Ensure index.html has a <div id='root'></div>");
+}
+
+createRoot(rootElement).render(
   <StrictMode>
     <AuthProvider>
-    <Toaster position="top-right" toastOptions={{ duration: 3000, }} />
+      <Toaster position="top-right" toastOptions={{ duration: 3000, }} />
       {/* <ConfiguredToast /> */}
       <App />
     </AuthProvider>
